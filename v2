@@ -67,7 +67,7 @@ initialize_game()
 #This Python code translates the BASIC setup of the wizard's castle and character selection part. It handles creating rooms in the castle and setting up the player's character based on their choice of race and sex.
 
 def setup_castle():
-    global X, Y, L, C, R, O, RC, ST, DX, R$, O$, BF, OT, AV, HT, T, VF, LF, TC, GP, RF, OF, BL, IQ, SX
+    global X, Y, L, C, R, O, RC, ST, DX, R_, O_, BF, OT, AV, HT, T, VF, LF, TC, GP, RF, OF, BL, IQ, SX
 
     print("\n" + "* * * THE WIZARD'S CASTLE * * *")
     print()
