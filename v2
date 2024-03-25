@@ -2,8 +2,11 @@
 
 
 #This Python code corresponds to the initialization and introductory parts of the provided BASIC code snippet.
-import random
-import sys
+port random
+import sys  # Add this import statement for sys
+
+def FND(n):  # Define the FND function
+    return random.randint(1, n)
 
 def get_input(prompt):
     try:
