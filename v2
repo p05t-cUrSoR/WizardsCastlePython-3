@@ -1,7 +1,4 @@
-
-
-
-#This Python code corresponds to the initialization and introductory parts of the provided BASIC code snippet.
+# This Python code corresponds to the initialization and introductory parts of the provided BASIC code snippet.
 import random
 import sys  # Add this import statement for sys
 
@@ -57,175 +54,67 @@ def press_any_key():
         if key:
             break
 
-def initialize_game():
-    global SAMP
-    SAMP = "NO"
+# Define global variables for race choice
+SX = 0
+RC = 0
+ST = 0
+DX = 0
+IQ = 0
+OT = 0
 
-initialize_arrays()
-print_intro()
-print_welcome()
-press_any_key()
-initialize_game()
-def setup_castle():
-    global X, Y, L, C, R, O, RC, ST, DX, R_, O_, BF, OT, AV, HT, T, VF, LF, TC, GP, RF, OF, BL, IQ, SX
-
-    print("\n" + "* * * THE WIZARD'S CASTLE * * *")
-    print()
-    print("MANY CYCLES AGO, IN THE KINGDOM OF N'DIC, THE GNOMIC")
-    print("WIZARD ZOT FORGED HIS GREAT *ORB OF POWER*. HE SOON")
-    print("VANISHED, LEAVING BEHIND HIS VAST SUBTERRANEAN CASTLE")
-    print("FILLED WITH ESURIENT MONSTERS, FABULOUS TREASURES, AND")
-    print("THE INCREDIBLE *ORB OF ZOT*. FROM THAT TIME HENCE, MANY")
-    print("A BOLD YOUTH HAS VENTURED INTO THE WIZARD'S CASTLE. AS")
-    print("OF NOW, *NONE* HAS EVER EMERGED VICTORIOUSLY! BEWARE!!")
-    print()
-
-    X, Y = 1, 4
-    L[FND(1)] = 2
-    for Z in range(1, 8):
-        for Q1 in range(1, 3):
-            Q = 104
-            create_room()
-            L[FND(Z + 1)] = 103
-
-    for Z in range(1, 9):
-        for Q in range(113, 125):
-            create_room()
-
-        for Q1 in range(1, 4):
-            for Q in range(105, 113):
-                create_room()
-            Q = 125
-            create_room()
-
-    for Q in range(126, 134):
-        Z = FNA(8)
-        create_room()
-
-    Q = 101
-    for A in range(1, 4):
-        Z = FNA(8)
-        create_room()
-        C[A][0] = X
-        C[A][1] = Y
-        C[A][2] = Z
-        C[A][3] = 0
-
-    RC = 0
-    ST = 2
-    DX = 14
-    R_ = "MAN"
-    Q = 112 + FNA(12)
-    Z = FNA(8)
-    create_room()
-    R[0] = X
-    R[1] = Y
-    R[2] = Z
-    Q = 109
-    Z = FNA(8)
-    create_room()
-    O[0] = X
-    O[1] = Y
-    O[2] = Z
-
-    BF = 0
-    OT = 8
-    AV = 0
-    HT = 0
-    T = 1
-    VF = 0
-    LF = 0
-    TC = 0
-    GP = 60
-    RF = 0
-    OF = 0
-    BL = 0
-    IQ = 8
-    SX = 0
-
-    for Q in range(1, 9):
-        T[Q] = 0
-
-    print("\a")
+# Define the choose_sex() function
+def choose_sex():
+    global SX, RC, ST, DX, IQ, OT
     print("ALL RIGHT, BOLD ONE.")
     print("YOU MAY BE AN ELF, DWARF, MAN, OR HOBBIT.")
 
-    sex_choice = input("Enter 'E' for Elf, 'D' for Dwarf, 'M' for Man, or 'H' for Hobbit: ").upper()
+    # Get user input for race choice
+    race_choice = input("Enter 'E' for Elf, 'D' for Dwarf, 'M' for Man, or 'H' for Hobbit: ").upper()
 
-    for Q in range(1, 5):
-        if R_[Q - 1][0] == sex_choice:
-            RC = Q
-            ST += 2 * Q
-            DX -= 2 * Q
-    print()
-
-    if RC == 0:
+    # Set attributes based on race choice
+    if race_choice == 'E':
+        RC = 1
+        ST = 6
+        DX = 10
+        IQ = 12
+        OT = 12
+    elif race_choice == 'D':
+        RC = 2
+        ST = 12
+        DX = 6
+        IQ = 8
+        OT = 8
+    elif race_choice == 'M':
+        RC = 3
+        ST = 10
+        DX = 8
+        IQ = 10
+        OT = 10
+    elif race_choice == 'H':
+        RC = 4
+        ST = 8
+        DX = 12
+        IQ = 6
+        OT = 6
+    else:
         print("** THAT WAS INCORRECT. PLEASE TYPE E, D, M, OR H.")
-        setup_castle()
+        choose_sex()  # Call choose_sex() again if the input is invalid
 
-    OT += 4 * (RC == 1)
-
-
-    OT += 4 * (RC == 1)
-
-# Define RC at the beginning of the script
-RC = 0
-
-def create_room():
-    global X, Y, L
-    X = FND(8)
-    Y = FND(8)
-    L[FND(X)] = 103
-
-# Define these variables globally with initial values
-ST = 0
-IQ = 0
-DX = 0
-
-def choose_sex():
-    global SX, RC, ST, DX, IQ, OT  # Define variables as global
     print("OK, {}, YOU HAVE THE FOLLOWING ATTRIBUTES:".format(R[RC]))
     print("STRENGTH = {}, INTELLIGENCE = {}, DEXTERITY = {}".format(ST, IQ, DX))
     print("AND {} OTHER POINTS TO ALLOCATE AS YOU WISH.".format(OT))
 
-    z = "STRENGTH"
-    allocate_points(z)
-    ST += Q
-
-    if OT == 0:
-        return
-
-    z = "INTELLIGENCE"
-    allocate_points(z)
-    IQ += Q
-
-    if OT == 0:
-        return
-
-    z = "DEXTERITY"
-    allocate_points(z)
-    DX += Q
-
-    print("OK, {}, YOU HAVE 60 GOLD PIECES (GP'S).".format(R[RC]))
-    z = "ARMOR"
-    choose_armor(z)
-def allocate_points(attribute):
-    global Q, OT
-    print("\nChoose points to allocate for", attribute)
-    while True:
-        try:
-            Q = int(input("Enter points ({} left): ".format(OT)))
-            if Q < 0 or Q > OT:
-                print("Invalid input! Please enter a valid number between 0 and {}.".format(OT))
-                continue
-            break
-        except ValueError:
-            print("Invalid input! Please enter a valid number.")
-            continue
-    OT -= Q
+    # Other logic for attribute allocation
 
 # Start of the program
+initialize_arrays()
+print_intro()
+print_welcome()
+press_any_key()
+
+# Call the choose_sex() function to prompt the user for race choice and set attributes
 choose_sex()
+
 
 def choose_armor(z):
     global AV, GP
