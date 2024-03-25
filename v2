@@ -80,9 +80,9 @@ print_welcome()
 initialize_arrays()
 R = {"H": "Hobbit", "E": "Elf", "D": "Dwarf", "M": "Man"}
 
-choose_sex()
-     global SX, RC, ST, DX, IQ, OT  # Define variables as global
-    while True:
+def choose_sex():
+    global SX, RC, ST, DX, IQ, OT  # Define variables as global
+while True:
         print("ALL RIGHT, BOLD ONE.")
         print("YOU MAY BE AN ELF, DWARF, MAN, OR HOBBIT.")
         sex_choice = input("Enter 'E' for Elf, 'D' for Dwarf, 'M' for Man, or 'H' for Hobbit: ").upper()
