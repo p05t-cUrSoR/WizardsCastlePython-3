@@ -2,7 +2,7 @@
 
 
 #This Python code corresponds to the initialization and introductory parts of the provided BASIC code snippet.
-port random
+iport random
 import sys  # Add this import statement for sys
 
 def FND(n):  # Define the FND function
