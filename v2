@@ -1,0 +1,1558 @@
+
+
+
+#This Python code corresponds to the initialization and introductory parts of the provided BASIC code snippet.
+
+import random
+
+def get_input(prompt):
+    try:
+        return input(prompt)
+    except KeyboardInterrupt:
+        print("\nGoodbye!")
+        sys.exit()
+
+def initialize_arrays():
+    global NG, C, I, R, W, E, L, T, O
+    NG = 0
+    Q = random.random()
+    C = [""] * 35
+    I = [""] * 35
+    R = [""] * 5
+    W = [""] * 9
+    E = [""] * 9
+    L = [101] * 513
+    T = [0] * 9
+    O = [0] * 4
+
+def print_intro():
+    print("\n" + "°" * 45)
+    print(" " * 6 + "2039-A.BAS")
+    print("THE WIZARD'S CASTLE")
+    print(" " * 6 + "BROUGHT TO YOU BY THE MEMBERS OF")
+    print(" " * 6 + "INTERNATIONAL PC OWNERS")
+    print("P.O. Box 10426, Pittsburgh PA 15234")
+    print(" " * 6 + "°" * 45)
+    input("\nPress Enter to continue...")
+
+def print_welcome():
+    print("\n" + "* * * THE WIZARD'S CASTLE * * *")
+    print()
+    print("MANY CYCLES AGO, IN THE KINGDOM OF N'DIC, THE GNOMIC")
+    print("WIZARD ZOT FORGED HIS GREAT *ORB OF POWER*. HE SOON")
+    print("VANISHED, LEAVING BEHIND HIS VAST SUBTERRANEAN CASTLE")
+    print("FILLED WITH ESURIENT MONSTERS, FABULOUS TREASURES, AND")
+    print("THE INCREDIBLE *ORB OF ZOT*. FROM THAT TIME HENCE, MANY")
+    print("A BOLD YOUTH HAS VENTURED INTO THE WIZARD'S CASTLE. AS")
+    print("OF NOW, *NONE* HAS EVER EMERGED VICTORIOUSLY! BEWARE!!")
+    print()
+
+def press_any_key():
+    print("       PRESS ANY KEY TO CONTINUE")
+    while True:
+        key = input()
+        if key:
+            break
+
+def initialize_game():
+    global SAMP
+    SAMP = "NO"
+
+initialize_arrays()
+print_intro()
+print_welcome()
+press_any_key()
+initialize_game()
+
+#This Python code translates the BASIC setup of the wizard's castle and character selection part. It handles creating rooms in the castle and setting up the player's character based on their choice of race and sex.
+
+def setup_castle():
+    global X, Y, L, C, R, O, RC, ST, DX, R$, O$, BF, OT, AV, HT, T, VF, LF, TC, GP, RF, OF, BL, IQ, SX
+
+    print("\n" + "* * * THE WIZARD'S CASTLE * * *")
+    print()
+    print("MANY CYCLES AGO, IN THE KINGDOM OF N'DIC, THE GNOMIC")
+    print("WIZARD ZOT FORGED HIS GREAT *ORB OF POWER*. HE SOON")
+    print("VANISHED, LEAVING BEHIND HIS VAST SUBTERRANEAN CASTLE")
+    print("FILLED WITH ESURIENT MONSTERS, FABULOUS TREASURES, AND")
+    print("THE INCREDIBLE *ORB OF ZOT*. FROM THAT TIME HENCE, MANY")
+    print("A BOLD YOUTH HAS VENTURED INTO THE WIZARD'S CASTLE. AS")
+    print("OF NOW, *NONE* HAS EVER EMERGED VICTORIOUSLY! BEWARE!!")
+    print()
+
+    X, Y = 1, 4
+    L[FND(1)] = 2
+    for Z in range(1, 8):
+        for Q1 in range(1, 3):
+            Q = 104
+            create_room()
+            L[FND(Z + 1)] = 103
+
+    for Z in range(1, 9):
+        for Q in range(113, 125):
+            create_room()
+
+        for Q1 in range(1, 4):
+            for Q in range(105, 113):
+                create_room()
+            Q = 125
+            create_room()
+
+    for Q in range(126, 134):
+        Z = FNA(8)
+        create_room()
+
+    Q = 101
+    for A in range(1, 4):
+        Z = FNA(8)
+        create_room()
+        C[A][0] = X
+        C[A][1] = Y
+        C[A][2] = Z
+        C[A][3] = 0
+
+    RC = 0
+    ST = 2
+    DX = 14
+    R$ = "MAN"
+    Q = 112 + FNA(12)
+    Z = FNA(8)
+    create_room()
+    R[0] = X
+    R[1] = Y
+    R[2] = Z
+    Q = 109
+    Z = FNA(8)
+    create_room()
+    O[0] = X
+    O[1] = Y
+    O[2] = Z
+
+    BF = 0
+    OT = 8
+    AV = 0
+    HT = 0
+    T = 1
+    VF = 0
+    LF = 0
+    TC = 0
+    GP = 60
+    RF = 0
+    OF = 0
+    BL = 0
+    IQ = 8
+    SX = 0
+
+    for Q in range(1, 9):
+        T[Q] = 0
+
+    print("\a")
+    print("ALL RIGHT, BOLD ONE.")
+    print("YOU MAY BE AN ELF, DWARF, MAN, OR HOBBIT.")
+
+    sex_choice = input("Enter 'E' for Elf, 'D' for Dwarf, 'M' for Man, or 'H' for Hobbit: ").upper()
+
+    for Q in range(1, 5):
+        if R$[Q - 1][0] == sex_choice:
+            RC = Q
+            ST += 2 * Q
+            DX -= 2 * Q
+    print()
+
+    if RC == 0:
+        print("** THAT WAS INCORRECT. PLEASE TYPE E, D, M, OR H.")
+        setup_castle()
+
+    OT += 4 * (RC == 1)
+    if RC > 0:
+        R$ = "HUMAN"
+    else:
+        print("** CUTE ", R$, ", REAL CUTE. TRY M OR F.")
+        setup_castle()
+
+
+def create_room():
+    global X, Y, L
+    X = FNA(8)
+    Y = FNA(8)
+    L[FND(X)] = 103
+
+
+
+
+
+
+      def choose_sex():
+    global SX
+    print("OK, {}, YOU HAVE THE FOLLOWING ATTRIBUTES:".format(R[RC]))
+    print("STRENGTH = {}, INTELLIGENCE = {}, DEXTERITY = {}".format(ST, IQ, DX))
+    print("AND {} OTHER POINTS TO ALLOCATE AS YOU WISH.".format(OT))
+
+    z = "STRENGTH"
+    allocate_points(z)
+    ST += Q
+
+    if OT == 0:
+        return
+
+    z = "INTELLIGENCE"
+    allocate_points(z)
+    IQ += Q
+
+    if OT == 0:
+        return
+
+    z = "DEXTERITY"
+    allocate_points(z)
+    DX += Q
+
+    print("OK, {}, YOU HAVE 60 GOLD PIECES (GP'S).".format(R[RC]))
+    z = "ARMOR"
+    choose_armor(z)
+
+
+def allocate_points(attribute):
+    global Q, OT
+    print("\nChoose points to allocate for", attribute)
+    while True:
+        try:
+            Q = int(input("Enter points ({} left): ".format(OT)))
+            if Q < 0 or Q > OT:
+                print("Invalid input! Please enter a valid number between 0 and {}.".format(OT))
+                continue
+            break
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
+            continue
+    OT -= Q
+
+
+def choose_armor(z):
+    global AV, GP
+    AV = 0
+    WV = 0
+    FL = 0
+    WC = 0
+
+    print("PLATE<30> CHAINMAIL<20> LEATHER<10> NOTHING<0>")
+    while True:
+        armor_choice = input("Choose armor: ")
+        if armor_choice.upper() == "NOTHING":
+            break
+        elif armor_choice.upper() in ["PLATE", "CHAINMAIL", "LEATHER"]:
+            if armor_choice.upper() == "PLATE":
+                AV = -3
+            elif armor_choice.upper() == "CHAINMAIL":
+                AV = -2
+            elif armor_choice.upper() == "LEATHER":
+                AV = -1
+            GP -= AV * 10
+            break
+        else:
+            print("Invalid choice! Please choose from the options provided.")
+            continue
+
+    if GP < 20:
+        return
+
+    print("OK, BOLD {}, YOU HAVE {} GP'S LEFT.".format(R[RC], GP))
+    z = "WEAPONS"
+    choose_weapon(z)
+
+
+def choose_weapon(z):
+    global WV, GP
+    print("SWORD<30> MACE<20> DAGGER<10> NOTHING<0>")
+    while True:
+        weapon_choice = input("Choose weapon: ")
+        if weapon_choice.upper() == "NOTHING":
+            break
+        elif weapon_choice.upper() in ["SWORD", "MACE", "DAGGER"]:
+            if weapon_choice.upper() == "SWORD":
+                WV = -3
+            elif weapon_choice.upper() == "MACE":
+                WV = -2
+            elif weapon_choice.upper() == "DAGGER":
+                WV = -1
+            GP -= WV * 10
+            break
+        else:
+            print("Invalid choice! Please choose from the options provided.")
+            continue
+
+    if GP < 20:
+        return
+
+    print("\nDo you want to buy a lamp for 20 GP'S?")
+    while True:
+        lamp_choice = input("(Y/N): ").upper()
+        if lamp_choice == "Y":
+            GP -= 20
+            LF = 1
+            print("Lamp purchased!")
+            break
+        elif lamp_choice == "N":
+            print("No lamp purchased.")
+            break
+        else:
+            print("Invalid choice! Please enter Y or N.")
+            continue
+
+    if GP < 1:
+        Q = 0
+        return
+
+    print("OK, {}, YOU HAVE {} GOLD PIECES LEFT.".format(R[RC], GP))
+    print("\nFlares cost 1 GP each.")
+    while True:
+        try:
+            flares = int(input("How many do you want? "))
+            if flares < 0:
+                print("Invalid input! Please enter a non-negative number.")
+                continue
+            break
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
+            continue
+
+    FL += flares
+    GP -= flares
+
+    print("OK, {}, YOU ARE NOW ENTERING THE CASTLE!".format(R[RC]))
+    # Continue to the next block of code
+
+
+# Start of the program
+choose_sex()
+def choose_sex():
+    global SX
+    print("OK, {}, YOU HAVE THE FOLLOWING ATTRIBUTES:".format(R[RC]))
+    print("STRENGTH = {}, INTELLIGENCE = {}, DEXTERITY = {}".format(ST, IQ, DX))
+    print("AND {} OTHER POINTS TO ALLOCATE AS YOU WISH.".format(OT))
+
+    z = "STRENGTH"
+    allocate_points(z)
+    ST += Q
+
+    if OT == 0:
+        return
+
+    z = "INTELLIGENCE"
+    allocate_points(z)
+    IQ += Q
+
+    if OT == 0:
+        return
+
+    z = "DEXTERITY"
+    allocate_points(z)
+    DX += Q
+
+    print("OK, {}, YOU HAVE 60 GOLD PIECES (GP'S).".format(R[RC]))
+    z = "ARMOR"
+    choose_armor(z)
+
+
+def allocate_points(attribute):
+    global Q, OT
+    print("\nChoose points to allocate for", attribute)
+    while True:
+        try:
+            Q = int(input("Enter points ({} left): ".format(OT)))
+            if Q < 0 or Q > OT:
+                print("Invalid input! Please enter a valid number between 0 and {}.".format(OT))
+                continue
+            break
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
+            continue
+    OT -= Q
+
+
+def choose_armor(z):
+    global AV, GP
+    AV = 0
+    WV = 0
+    FL = 0
+    WC = 0
+
+    print("PLATE<30> CHAINMAIL<20> LEATHER<10> NOTHING<0>")
+    while True:
+        armor_choice = input("Choose armor: ")
+        if armor_choice.upper() == "NOTHING":
+            break
+        elif armor_choice.upper() in ["PLATE", "CHAINMAIL", "LEATHER"]:
+            if armor_choice.upper() == "PLATE":
+                AV = -3
+            elif armor_choice.upper() == "CHAINMAIL":
+                AV = -2
+            elif armor_choice.upper() == "LEATHER":
+                AV = -1
+            GP -= AV * 10
+            break
+        else:
+            print("Invalid choice! Please choose from the options provided.")
+            continue
+
+    if GP < 20:
+        return
+
+    print("OK, BOLD {}, YOU HAVE {} GP'S LEFT.".format(R[RC], GP))
+    z = "WEAPONS"
+    choose_weapon(z)
+
+
+def choose_weapon(z):
+    global WV, GP
+    print("SWORD<30> MACE<20> DAGGER<10> NOTHING<0>")
+    while True:
+        weapon_choice = input("Choose weapon: ")
+        if weapon_choice.upper() == "NOTHING":
+            break
+        elif weapon_choice.upper() in ["SWORD", "MACE", "DAGGER"]:
+            if weapon_choice.upper() == "SWORD":
+                WV = -3
+            elif weapon_choice.upper() == "MACE":
+                WV = -2
+            elif weapon_choice.upper() == "DAGGER":
+                WV = -1
+            GP -= WV * 10
+            break
+        else:
+            print("Invalid choice! Please choose from the options provided.")
+            continue
+
+    if GP < 20:
+        return
+
+    print("\nDo you want to buy a lamp for 20 GP'S?")
+    while True:
+        lamp_choice = input("(Y/N): ").upper()
+        if lamp_choice == "Y":
+            GP -= 20
+            LF = 1
+            print("Lamp purchased!")
+            break
+        elif lamp_choice == "N":
+            print("No lamp purchased.")
+            break
+        else:
+            print("Invalid choice! Please enter Y or N.")
+            continue
+
+    if GP < 1:
+        Q = 0
+        return
+
+    print("OK, {}, YOU HAVE {} GOLD PIECES LEFT.".format(R[RC], GP))
+    print("\nFlares cost 1 GP each.")
+    while True:
+        try:
+            flares = int(input("How many do you want? "))
+            if flares < 0:
+                print("Invalid input! Please enter a non-negative number.")
+                continue
+            break
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
+            continue
+
+    FL += flares
+    GP -= flares
+
+    print("OK, {}, YOU ARE NOW ENTERING THE CASTLE!".format(R[RC]))
+    # Continue to the next block of code
+
+
+# Start of the program
+choose_sex()
+def choose_sex():
+    global SX
+    print("OK, {}, YOU HAVE THE FOLLOWING ATTRIBUTES:".format(R[RC]))
+    print("STRENGTH = {}, INTELLIGENCE = {}, DEXTERITY = {}".format(ST, IQ, DX))
+    print("AND {} OTHER POINTS TO ALLOCATE AS YOU WISH.".format(OT))
+
+    z = "STRENGTH"
+    allocate_points(z)
+    ST += Q
+
+    if OT == 0:
+        return
+
+    z = "INTELLIGENCE"
+    allocate_points(z)
+    IQ += Q
+
+    if OT == 0:
+        return
+
+    z = "DEXTERITY"
+    allocate_points(z)
+    DX += Q
+
+    print("OK, {}, YOU HAVE 60 GOLD PIECES (GP'S).".format(R[RC]))
+    z = "ARMOR"
+    choose_armor(z)
+
+
+def allocate_points(attribute):
+    global Q, OT
+    print("\nChoose points to allocate for", attribute)
+    while True:
+        try:
+            Q = int(input("Enter points ({} left): ".format(OT)))
+            if Q < 0 or Q > OT:
+                print("Invalid input! Please enter a valid number between 0 and {}.".format(OT))
+                continue
+            break
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
+            continue
+    OT -= Q
+
+
+def choose_armor(z):
+    global AV, GP
+    AV = 0
+    WV = 0
+    FL = 0
+    WC = 0
+
+    print("PLATE<30> CHAINMAIL<20> LEATHER<10> NOTHING<0>")
+    while True:
+        armor_choice = input("Choose armor: ")
+        if armor_choice.upper() == "NOTHING":
+            break
+        elif armor_choice.upper() in ["PLATE", "CHAINMAIL", "LEATHER"]:
+            if armor_choice.upper() == "PLATE":
+                AV = -3
+            elif armor_choice.upper() == "CHAINMAIL":
+                AV = -2
+            elif armor_choice.upper() == "LEATHER":
+                AV = -1
+            GP -= AV * 10
+            break
+        else:
+            print("Invalid choice! Please choose from the options provided.")
+            continue
+
+    if GP < 20:
+        return
+
+    print("OK, BOLD {}, YOU HAVE {} GP'S LEFT.".format(R[RC], GP))
+    z = "WEAPONS"
+    choose_weapon(z)
+
+
+def choose_weapon(z):
+    global WV, GP
+    print("SWORD<30> MACE<20> DAGGER<10> NOTHING<0>")
+    while True:
+        weapon_choice = input("Choose weapon: ")
+        if weapon_choice.upper() == "NOTHING":
+            break
+        elif weapon_choice.upper() in ["SWORD", "MACE", "DAGGER"]:
+            if weapon_choice.upper() == "SWORD":
+                WV = -3
+            elif weapon_choice.upper() == "MACE":
+                WV = -2
+            elif weapon_choice.upper() == "DAGGER":
+                WV = -1
+            GP -= WV * 10
+            break
+        else:
+            print("Invalid choice! Please choose from the options provided.")
+            continue
+
+    if GP < 20:
+        return
+
+    print("\nDo you want to buy a lamp for 20 GP'S?")
+    while True:
+        lamp_choice = input("(Y/N): ").upper()
+        if lamp_choice == "Y":
+            GP -= 20
+            LF = 1
+            print("Lamp purchased!")
+            break
+        elif lamp_choice == "N":
+            print("No lamp purchased.")
+            break
+        else:
+            print("Invalid choice! Please enter Y or N.")
+            continue
+
+    if GP < 1:
+        Q = 0
+        return
+
+    print("OK, {}, YOU HAVE {} GOLD PIECES LEFT.".format(R[RC], GP))
+    print("\nFlares cost 1 GP each.")
+    while True:
+        try:
+            flares = int(input("How many do you want? "))
+            if flares < 0:
+                print("Invalid input! Please enter a non-negative number.")
+                continue
+            break
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
+            continue
+
+    FL += flares
+    GP -= flares
+
+    print("OK, {}, YOU ARE NOW ENTERING THE CASTLE!".format(R[RC]))
+    # Continue to the next block of code
+
+
+# Start of the program
+choose_sex()
+
+
+  #This Python translation captures the essence of the original BASIC code and implements the main processing loop along with various commands such as movement, drinking, viewing the map, using items, and quitting the game.
+
+def main_processing_loop():
+    global T, RF, OF, GP, BL, BF
+    T += 1
+    if RF + OF > 0:
+        return
+    if C[0][3] > T[0]:
+        T += 1
+    if C[1][3] > T[2]:
+        GP -= random.randint(1, 5)
+    if GP < 0:
+        GP = 0
+    if C[2][3] <= T[4]:
+        return
+
+    A, B, C = X, Y, Z
+    X, Y, Z = random.randint(1, 8), random.randint(1, 8), random.randint(1, 8)
+    L[FND(Z)] += 100
+    X, Y, Z = A, B, C
+
+    if L[FND(Z)] != 1:
+        return
+
+    for Q in range(3):
+        C[Q][3] = -(C[Q][0] == X) * (C[Q][1] == Y) * (C[Q][2] == Z)
+
+    if random.randint(1, 5) > 1:
+        print()
+        print("YOU ", end="")
+        Q = random.randint(1, 7) + BL
+        if Q > 7:
+            Q = 4
+        return {
+            1: see_bat,
+            2: hear_scream,
+            3: hear_footsteps,
+            4: encounter_wumpus,
+            5: hear_thunder,
+            6: sneezed,
+            7: see_bat
+        }[Q]()
+
+    return
+
+
+def see_bat():
+    print("SEE A BAT FLY BY!")
+
+
+def hear_scream():
+    print("HEAR A SCREAM!")
+
+
+def hear_footsteps():
+    print("HEAR FOOTSTEPS!")
+
+
+def encounter_wumpus():
+    print("ENCOUNTER A WUMPUS!")
+
+
+def hear_thunder():
+    print("HEAR THUNDER!")
+
+
+def sneezed():
+    print("SNEEZED!")
+
+
+def see_bat():
+    print("SEE A BAT FLY BY!")
+
+
+def process_command():
+    global BL
+    while True:
+        print()
+        command = input("ENTER YOUR COMMAND: ").upper()
+
+        if command == "DR":
+            drink()
+            break
+        elif command in ["N", "S", "E", "W"]:
+            move(command)
+            break
+        elif command == "U":
+            move("U")
+            break
+        elif command == "D":
+            move("D")
+            break
+        elif command == "M":
+            show_map()
+            break
+        elif command == "F":
+            if BL == 1:
+                print("\nYOU CAN'T SEE ANYTHING, YOU DUMB", R[RC], "!")
+                break
+            else:
+                print("\nFLARES LIGHT UP THE ROOM!")
+                process_command()
+                break
+        elif command == "L":
+            if BL == 1:
+                print("\nYOU CAN'T SEE ANYTHING, YOU DUMB", R[RC], "!")
+                break
+            else:
+                print("\nTHE LAMP ILLUMINATES THE ROOM!")
+                process_command()
+                break
+        elif command == "O":
+            open_chest()
+            break
+        elif command == "G":
+            get_treasure()
+            break
+        elif command == "T":
+            print()
+            if RF == 1:
+                teleport()
+            else:
+                print("YOU CAN'T TELEPORT OUT OF THIS ROOM!")
+            break
+        elif command == "Q":
+            quit_game()
+            break
+        else:
+            print("\n** SILLY", R[RC], ", THAT WASN'T A VALID COMMAND!")
+
+
+# Start of the program
+while True:
+    main_processing_loop()
+    process_command()
+#These functions handle the display of the castle map, using flares to reveal adjacent room contents, and using a lamp to shine light into adjacent rooms. The main processing loop and command processing remain intact, allowing the player to interact with the game environment.
+
+def display_map():
+    global X, Y
+    print()
+    A, B = X, Y
+    for X in range(1, 9):
+        for Y in range(1, 9):
+            Q = L[FND(Z)]
+            if Q > 99:
+                Q = 34  # To hide rooms
+            if X == A and Y == B:
+                print("<{}>  ".format(I[Q]), end="")
+            else:
+                print(" {}   ".format(I[Q]), end="")
+        print()
+        print()
+    X, Y = A, B
+    return
+
+
+def use_flare():
+    global FL, X, Y
+    if FL == 0:
+        print("** HEY, BRIGHT ONE, YOU'RE OUT OF FLARES!")
+        return
+    print()
+    FL -= 1
+    A, B = X, Y
+    for Q1 in range(A - 1, A + 2):
+        X = FNB(Q1)
+        for Q2 in range(B - 1, B + 2):
+            Y = FNB(Q2)
+            Q = FNE(L[FND(Z)])
+            L[FND(Z)] = Q
+            print(" {}   ".format(I[Q]), end="")
+        print()
+        print()
+    X, Y = A, B
+    return
+
+
+def use_lamp():
+    global LF, X, Y
+    if LF == 0:
+        print("** YOU DON'T HAVE A LAMP, {}!".format(R[RC]))
+        return
+    print()
+    print("WHERE DO YOU WANT TO SHINE THE LAMP (N,S,E,W)?")
+    direction = input().upper()
+    A, B = X, Y
+    X = FNB(X + (direction == "N") - (direction == "S"))
+    Y = FNB(Y + (direction == "W") - (direction == "E"))
+    if A - X + B - Y == 0:
+        print()
+        print("** THAT'S NOT A DIRECTION, {}!".format(R[RC]))
+        return
+    print()
+    print("THE LAMP SHINES INTO ({},{}) LEVEL {}.".format(X, Y, Z))
+    print()
+    L[FND(Z)] = FNE(L[FND(Z)])
+    print("THERE YOU WILL FIND {}.".format(C[L[FND(Z)]]))
+    X, Y = A, B
+    return
+
+
+# Continuation of the program
+while True:
+    main_processing_loop()
+    process_command()
+def take_drink_from_pool():
+    global ST, IQ, DX, RC, SX, GP, BL, BF, LF, L, Z, T
+    if L[FND(Z)] != 5:
+        print()
+        print("** IF YOU WANT A DRINK, FIND A POOL!")
+        return
+
+    Q = FNA(8)
+    print()
+    print("YOU TAKE A DRINK AND ", end="")
+    if Q < 7:
+        print("FEEL ", end="")
+    if Q == 1:
+        ST = FNC(ST + FNA(3))
+        print("STRONGER.")
+    elif Q == 2:
+        ST = ST - FNA(3)
+        print("WEAKER.")
+        if ST < 1:
+            print("\n** YOU HAVE DIED! GAME OVER **")
+            return True
+    elif Q == 3:
+        IQ = FNC(IQ + FNA(3))
+        print("SMARTER.")
+    elif Q == 4:
+        IQ = IQ - FNA(3)
+        print("DUMBER.")
+        if IQ < 1:
+            print("\n** YOU HAVE DIED! GAME OVER **")
+            return True
+    elif Q == 5:
+        DX = FNC(DX + FNA(3))
+        print("NIMBLER.")
+    elif Q == 6:
+        DX = DX - FNA(3)
+        print("CLUMSIER.")
+        if DX < 1:
+            print("\n** YOU HAVE DIED! GAME OVER **")
+            return True
+    elif Q == 7:
+        new_RC = FNA(4)
+        while new_RC == RC:
+            new_RC = FNA(4)
+        RC = new_RC
+        print("BECOME A {};".format(R[RC]))
+    elif Q == 8:
+        SX = 1 - SX
+        print("TURN INTO A ", end="")
+        if SX == 0:
+            print("FE", end="")
+        print("MALE {}!".format(R[RC]))
+
+    L[FND(Z)] = 1
+    return False
+
+
+def open_chest_or_book():
+    global L, BF
+    if L[FND(Z)] == 6:
+        print("\nYOU OPEN THE CHEST AND")
+        print("YOU FIND", end="")
+    elif L[FND(Z)] == 12:
+        print("\nYOU OPEN THE BOOK AND")
+        print("YOU FIND", end="")
+    else:
+        print("\n** THE ONLY THING OPENED WAS YOUR BIG MOUTH!")
+        return
+
+    if L[FND(Z)] == 6:
+        on_open = FNA(4)
+        if on_open == 1:
+            print("KABOOM! IT EXPLODES!!")
+            Q = FNA(6)
+            if Q == 1:
+                ST = ST - FNA(2)
+                if ST < 1:
+                    print("\n** YOU HAVE DIED! GAME OVER **")
+                    return True
+            elif Q == 2:
+                found_gold = FNA(1000)
+                print("FIND {} GOLD PIECES!".format(found_gold))
+                GP = GP + found_gold
+            elif Q == 3:
+                print("GAS!! YOU STAGGER FROM THE ROOM!")
+                L[FND(Z)] = 1
+                T = T + 20
+                direction = "NSEW"[FNA(4)]
+                print()
+                print("You stagger {}.".format(direction))
+                X, Y = FNB(X + (direction == "N") - (direction == "S")), FNB(Y + (direction == "W") - (direction == "E"))
+                return False
+        else:
+            print("NO EFFECT")
+            L[FND(Z)] = 1
+            return False
+    elif L[FND(Z)] == 12:
+        on_open = FNA(6)
+        if on_open == 1:
+            print("FLASH! OH NO! YOU ARE NOW A BLIND {}!".format(R[RC]))
+            BL = 1
+            return False
+        elif on_open == 2:
+            print("IT'S ANOTHER VOLUME OF ZOT'S POETRY! - YECH!!")
+            return False
+        elif on_open == 3:
+            print("IT'S AN OLD COPY OF PLAY{}!".format(R[FNA(4)]))
+            return False
+        elif on_open == 4:
+            print("IT'S A MANUAL OF DEXTERITY!")
+            DX = 18
+            return False
+        elif on_open == 5:
+            print("IT'S A MANUAL OF STRENGTH!")
+            ST = 18
+            return False
+        elif on_open == 6:
+            print("THE BOOK STICKS TO YOUR HANDS -")
+            print("NOW YOU ARE UNABLE TO DRAW YOUR WEAPON!")
+            BF = 1
+            return False
+
+
+def gaze_at_orb():
+    global X, Y, Z, L
+    if L[FND(Z)] != 11:
+        print()
+        print("** IT'S HARD TO GAZE WITHOUT AN ORB!")
+        return
+    print()
+    print("YOU SEE ", end="")
+    option = FNA(6)
+    if option == 1:
+        print("YOURSELF IN A BLOODY HEAP!")
+        ST = ST - FNA(2)
+        if ST < 1:
+            print("\n** YOU HAVE DIED! GAME OVER **")
+            return True
+    elif option == 2:
+        print("YOURSELF DRINKING FROM A POOL AND BECOMING {}!".format(C[12 + FNA(13)]))
+    elif option == 3:
+        print("{} GAZING BACK AT YOU!".format(C[12 + FNA(13)]))
+    elif option == 4:
+        A, B, C = X, Y, Z
+        X, Y, Z = FNA(8), FNA(8), FNA(8)
+                Q = FNE(L[FND(Z)])
+        L[FND(Z)] = Q
+        print("{} AT ({},{}) LEVEL{}.".format(C[Q], X, Y, Z))
+        X, Y, Z = A, B, C
+    elif option == 5:
+        A = FNA(8)
+        B = FNA(8)
+        C = FNA(8)
+        if FNA(8) < 4:
+            A = O[0]
+            B = O[1]
+            C = O[2]
+        print("***THE ORB OF ZOT*** AT ({},{}) LEVEL{}!".format(A, B, C))
+    elif option == 6:
+        print("A SOAP OPERA RERUN!")
+
+    return False
+
+
+def main_processing_loop():
+    global GP, T, RF, OF, C, O, F, R, RC, BL, LF, SX, ST, IQ, DX, L, Z, X, Y
+
+    T += 1
+    if RF + OF > 0:
+        return
+    if C[0][3] > T[0]:
+        T += 1
+    if C[1][3] > T[2]:
+        GP -= FNA(5)
+    if GP < 0:
+        GP = 0
+    if C[2][3] <= T[4]:
+        return
+
+    A = X
+    B = Y
+    C = Z
+    X = FNA(8)
+    Y = FNA(8)
+    Z = FNA(8)
+
+    L[FND(Z)] = FNE(L[FND(Z)]) + 100
+
+    X = A
+    Y = B
+    Z = C
+
+    if L[FND(Z)] != 1:
+        for Q in range(3):
+            C[Q][3] = -(C[Q][0] == X) * (C[Q][1] == Y) * (C[Q][2] == Z)
+
+    if FNA(5) > 1:
+        return
+
+    print()
+    print("YOU ", end="")
+    Q = FNA(7) + BL
+    if Q > 7:
+        Q = 4
+    options = {
+        1: see_bat_fly_by,
+        2: hear,
+        3: smell,
+        4: feel_like_being_watched
+    }
+    options[Q]()
+
+    return
+
+#might have fed up here
+      def display_map():
+    print()
+    a = x
+    b = y
+    for x in range(1, 9):
+        for y in range(1, 9):
+            q = l[find_index(z)]
+            if q > 99:
+                q = 34  # Hide rooms with q > 99
+            if x == a and y == b:
+                print(f"<{i[q]}>  ", end="")
+            else:
+                print(f" {i[q]}   ", end="")
+        print()
+        print()
+
+
+def adjacent_room_contents_with_flare():
+    print()
+    global fl
+    a = x
+    b = y
+    for q1 in range(a - 1, a + 2):
+        x = find_next_boundary(q1)
+        for q2 in range(b - 1, b + 2):
+            y = find_next_boundary(q2)
+            q = find_next_empty(l[find_index(z)])
+            l[find_index(z)] = q
+            print(f" {i[q]}   ", end="")
+        print()
+        print()
+    x = a
+    y = b
+    update_display()
+
+
+def display_contents_of_adjacent_room_with_lamp():
+    if lf == 0:
+        print()
+        print("** YOU DON'T HAVE A LAMP, {}!".format(r[rc]))
+        return
+    print()
+    print("WHERE DO YOU WANT TO SHINE THE LAMP (N,S,E,W)")
+    direction = input().upper()
+    a = x
+    b = y
+    x = find_next_boundary(a + (direction == "N") - (direction == "S"))
+    y = find_next_boundary(b + (direction == "W") - (direction == "E"))
+    if a - x + b - y == 0:
+        print()
+        print("** THAT'S NOT A DIRECTION, {}!".format(r[rc]))
+        return
+    print()
+    print("THE LAMP SHINES INTO ({},{}) LEVEL{}.".format(x, y, z))
+    print()
+    l[find_index(z)] = find_next_empty(l[find_index(z)])
+    print("THERE YOU WILL FIND {}.".format(i[l[find_index(z)]]))
+    x = a
+    y = b
+    update_display()
+
+
+def take_a_drink_from_a_pool():
+    if l[find_index(z)] != 5:
+        print()
+        print("** IF YOU WANT A DRINK, FIND A POOL!")
+        return
+    q = random.randint(1, 8)
+    print()
+    print("YOU TAKE A DRINK AND ", end="")
+    if q < 7:
+        print("FEEL ", end="")
+    if q == 1:
+        global st
+        st = function_increase(st + random.randint(1, 3))
+        print("STRONGER.")
+    elif q == 2:
+        st = function_increase(st - random.randint(1, 3))
+        print("WEAKER.")
+        if st < 1:
+            st = 1
+    elif q == 3:
+        global iq
+        iq = function_increase(iq + random.randint(1, 3))
+        print("SMARTER.")
+    elif q == 4:
+        iq = function_increase(iq - random.randint(1, 3))
+        print("DUMBER.")
+        if iq < 1:
+            iq = 1
+    elif q == 5:
+        global dx
+        dx = function_increase(dx + random.randint(1, 3))
+        print("NIMBLER.")
+    elif q == 6:
+        dx = function_increase(dx - random.randint(1, 3))
+        print("CLUMSIER.")
+        if dx < 1:
+            dx = 1
+    elif q == 7:
+        rc = random.randint(1, 7)
+        if rc != 4:
+            global sx
+            sx = 1 - sx
+            print("TURN INTO A ", end="")
+            if sx == 0:
+                print("FE", end="")
+            print("MALE {}!".format(r[rc]))
+        else:
+            print("SMILE WIDELY!")
+    l[find_index(z)] = 1
+    update_display()
+
+
+def open_chest_or_book():
+    if l[find_index(z)] == 6:
+        print()
+        print("YOU OPEN THE CHEST AND")
+    elif l[find_index(z)] == 12:
+        print()
+        print("YOU OPEN THE BOOK AND")
+    else:
+        print()
+        print("** THE ONLY THING OPENED WAS YOUR BIG MOUTH!")
+        return
+    q = random.randint(1, 6)
+    if l[find_index(z)] == 6:
+        if q == 1:
+            print("FLASH! OH NO! YOU ARE NOW A BLIND {}!".format(r[rc]))
+            global bl
+            bl = 1
+        elif q == 2:
+            print("IT'S ANOTHER VOLUME OF ZOT'S POETRY! - YECH!!")
+        elif q == 3:
+            print("IT'S AN OLD COPY OF PLAY{}!".format(r[random.randint(1, 4)]))
+        elif q == 4:
+            print("IT'S A MANUAL OF DEXTERITY!")
+            global dx
+            dx = 18
+        elif q == 5:
+            print("IT'S A MANUAL OF STRENGTH!")
+            global st
+            st = 18
+        elif q == 6:
+            print("THE BOOK STICKS TO YOUR HANDS -")
+            print("NOW YOU ARE UNABLE TO DRAW YOUR WEAPON!")
+            global bf
+            bf = 1
+    elif l[find_index(z)] == 12:
+        if q == 1:
+            print("KABOOM! IT EXPLODES!!")
+        elif q == 2:
+            global gp
+            q = random.randint(1, 1000)
+            print("FIND {} GOLD PIECES!".format(q))
+            gp += q
+        elif q == 3:
+            print("GAS!! YOU STAGGER FROM THE ROOM!")
+            l[find_index(z)] = 1
+            global t
+            t += 20
+            o = random.choice(["N", "S", "E", "W"])
+            execute_command(o)
+
+
+def gaze_with_orb():
+    if l[find_index(z)] != 11:
+        print()
+        print("** IT'S HARD TO GAZE WITHOUT AN ORB!")
+        return
+    print()
+    print("YOU SEE ", end="")
+    q = random.randint(1, 6)
+    if q == 1:
+        print("YOURSELF IN A BLOODY HEAP!")
+        global st
+        st -= random.randint(1, 2)
+        if st < 1:
+            st = 1
+    elif q == 2:
+        print("YOURSELF DRINKING FROM A POOL AND BECOMING {}!".format(c[random.randint(13, 16)]))
+        global bl
+        bl = 1
+    elif q == 3:
+        print("{} GAZING BACK AT YOU!".format(c[random.randint(13,
+
+#
+
+
+                                                                   if rf != 0:
+        print()
+        print("** YOU CAN'T TELEPORT WITHOUT THE RUNESTAFF!")
+        goto_2920()
+    z = "X-COORDINATE"
+    q = get_coordinate(z)
+    x = q
+    z = "Y-COORDINATE"
+    q = get_coordinate(z)
+    y = q
+    z = "Z-COORDINATE"
+    q = get_coordinate(z)
+    z = q
+    o = "T"
+    goto_5920()
+
+
+def quit_game():
+    print()
+    print("DO YOU REALLY WANT TO QUIT NOW", end='')
+    goto_9850()
+    print()
+    if o != "Y":
+        print("** THEN DON'T SAY THAT YOU DO!")
+        goto_2920()
+    goto_9080()
+
+
+def display_status_information():
+    print()
+    if bl == 0:
+        display_coordinates()
+    else:
+        display_map()
+    print("STRENGTH =", st, "INTELLIGENCE =", iq, "DEXTERITY =", dx)
+    print("TREASURES =", tc, "FLARES =", fl, "GOLD PIECES =", gp)
+    print("WEAPON =", w[wv + 1], "  ARMOR =", w[av + 5], end='')
+    if lf == 1:
+        print("  AND A LAMP")
+    print()
+    wc = 0
+    q = find_next_empty(l[find_index(z)])
+    l[find_index(z)] = q
+    print()
+    print("HERE YOU FIND", c[q], ".")
+    if (q < 7) or (q == 11) or (q == 12):
+        goto_2920()
+    elif q == 7:
+        global gp
+        gp += random.randint(1, 10)
+        print("YOU NOW HAVE", gp, ".")
+        goto_5230()
+    elif q == 8:
+        global fl
+        fl += random.randint(1, 5)
+        print("YOU NOW HAVE", fl, ".")
+        goto_5230()
+    elif q > 9:
+        if (o[1] == x) and (o[2] == y) and (o[3] == z):
+            if o != 'T':
+                execute_command('N')
+            else:
+                execute_command('R')
+
+
+def process_trade():
+    global av, ah, wv, mc
+    if wv == 0:
+        print()
+        print("** YOU CAN'T TRADE WITHOUT A WEAPON,", r[rc])
+        return
+    if mc == 0:
+        print()
+        print("** YOU CAN'T TRADE WITHOUT A MONSTER,", r[rc])
+        return
+    a = (c[1][3] > t[1]) or (bl == 1) or (dx < random.randint(1, 18) + random.randint(1, 18))
+    if a:
+        print()
+        print("YOU'RE FACING", c[ah + 12], "!")
+        print()
+        print("YOU MAY ATTACK OR RETREAT.")
+        print("YOU CAN ALSO ATTEMPT A BRIBE.")
+        if iq > 14:
+            print("YOU CAN ALSO CAST A SPELL.")
+        print("YOUR STRENGTH IS", st, "AND YOUR DEXTERITY IS", dx, ".")
+        o = input().upper()
+        if o != "A":
+            print("NICE SHOT,", r[rc])
+            return
+        if wv == 0:
+            print()
+            print("** POUNDING ON", c[ah + 12], "WON'T HURT IT!")
+            return
+        if bf == 1:
+            print()
+            print("** YOU CAN'T BEAT IT TO DEATH WITH A BOOK!")
+            return
+        if dx < random.randint(1, 20) + 3 * bl:
+            print()
+            print("YOU MISSED, TOO BAD!")
+            return
+        print()
+        z = c[ah + 12]
+        if z[0] == " ":
+            z = z[1:]
+        print("YOU HIT THE EVIL", z, "!")
+        q = q - wv
+        if (ah != 9) and (ah != 12) and (q > 0):
+            if (ah != 9) and (ah != 12):
+                if q != 0:
+                    print()
+                    print("YOU SPEND AN HOUR EATING", z, ".")
+                    h = t
+            if (x != r[1]) or (y != r[2]) or (z != r[3]):
+                if ah != 13:
+                    execute_command('N')
+                else:
+                    execute_command('F')
+        else:
+            print()
+            print(z, "LIES DEAD AT YOUR FEET!")
+            if h < t - 60:
+                print()
+                print("YOU SPEND AN HOUR EATING", z, ".")
+                h = t
+            if (x != r[1]) or (y != r[2]) or (z != r[3]):
+                if ah != 13:
+                    execute_command('N')
+                else:
+                    execute_command('F')
+#
+
+                  print()
+print("GREAT ZOT! YOU'VE FOUND THE RUNESTAFF!", chr(7))
+r[1] = 0
+rf = 1
+q = random.randint(1, 1000)
+print()
+print("YOU NOW GET HIS HOARD OF", q, "GP'S")
+gp += q
+goto_5230()
+
+
+def cast_spell():
+    global st, iq, q2
+    if o$ == "R":
+        goto_8420()
+    if o$ != "C":
+        goto_8210()
+    if iq >= 15 or q3 <= 1:
+        goto_7970()
+    print()
+    print("** YOU CAN'T CAST A SPELL NOW!")
+    goto_7410()
+    print()
+    print("WHICH SPELL (WEB, FIREBALL, DEATHSPELL)")
+    gosub_9850()
+    print()
+    if o$ != "W" and o$ != "F" and o$ != "D":
+        goto_8050()
+    if o$ == "W":
+        st -= 1
+        wc = random.randint(1, 8) + 1
+        if st < 1:
+            goto_8420()
+        elif wc > 0:
+            goto_8840()
+    elif o$ == "F":
+        q = random.randint(1, 7) + random.randint(1, 7)
+        st -= 1
+        iq -= 1
+        if iq < 1 or st < 1:
+            goto_8840()
+        print("IT DOES", q, "POINTS WORTH OF DAMAGE.")
+        print()
+        q2 -= q
+        goto_7730()
+    elif o$ == "D":
+        goto_8180()
+    else:
+        print()
+        print("** TRY ONE OF THE OPTIONS GIVEN.")
+        goto_7410()
+
+
+def death_scenario():
+    global q2
+    print("DEATH . . . ", end='')
+    if iq < random.randint(1, 4) + 15:
+        print("YOURS!")
+        iq = 0
+        goto_8840()
+    else:
+        print("HIS!")
+        q2 = 0
+        goto_7740()
+
+
+def trade_request():
+    global tc, vf
+    if o$ == "B" and q3 <= 1:
+        goto_8250()
+    if tc != 0:
+        goto_8290()
+    q = random.randint(1, 8)
+    while t[q] == 0:
+        q = random.randint(1, 8)
+    print()
+    print("I WANT", c[q+25], ". WILL YOU GIVE IT TO ME", end='')
+    gosub_9850()
+    if o$ == "N":
+        goto_8420()
+    elif o$ == "Y":
+        t[q] = 0
+        tc -= 1
+        print()
+        print("OK, JUST DON'T TELL ANYONE ELSE.")
+        vf += (l[fnd(z)] == 25)
+    goto_2920()
+
+
+def handle_web_attack():
+    global wc, z$
+    if wc <= 0:
+        goto_8520()
+    wc -= 1
+    if wc == 0:
+        print()
+        print("THE WEB JUST BROKE!")
+    z$ = c$(a+12)[2:]
+    if z$[0] == " ":
+        z$ = z$[1:]
+    if wc <= 0:
+        goto_8520()
+    print()
+    print("THE", z$, "IS STUCK AND CAN'T ATTACK NOW!")
+    goto_8630()
+
+
+def handle_enemy_attack():
+    global wc, q1, q2
+    if o$ != "R":
+        goto_7410()
+    print()
+    print("THE", z$, "ATTACKS!")
+    if dx < random.randint(1, 7) + random.randint(1, 7) + random.randint(1, 7) + 3*bl:
+        print()
+        print("WHAT LUCK, HE MISSED YOU!")
+        goto_8630()
+    print()
+    print("OUCH! HE HIT YOU!")
+    q = q1
+    gosub_8740()
+    if st < 1:
+        goto_8840()
+    goto_8630()
+
+
+def escape_scenario():
+    print()
+    print("YOU HAVE ESCAPED!")
+    print()
+    print("DO YOU WANT TO GO NORTH, SOUTH, EAST, OR WEST", end='')
+    gosub_9850()
+    if o$ == "N" or o$ == "S" or o$ == "E" or o$ == "W":
+        goto_3900()
+    print()
+    print("** DON'T PRESS YOUR LUCK, ", r$(rc), "!")
+    print()
+    goto_8670()
+
+
+def handle_armor_destruction():
+    global av, ah
+    if av != 0:
+        goto_8820()
+    q = q - av
+    ah = ah - av
+    if q < 0:
+        ah = ah - q
+        q = 0
+    if ah >= 0:
+        goto_8820()
+    ah = 0
+    av = 0
+    print()
+    print("YOUR ARMOR HAS BEEN DESTROYED . . . GOOD LUCK!")
+
+
+def print_death_message():
+    print(chr(7))
+    gosub_9770()
+    print("A NOBLE EFFORT, OH FORMERLY LIVING ", r$(rc), "!")
+    print()
+    print("YOU DIED DUE TO LACK OF ", end='')
+    if st < 1:
+        print("STRENGTH.")
+    if iq < 1:
+        print("INTELLIGENCE.")
+    if dx < 1:
+        print("DEXTERITY.")
+    print()
+    q3 = 1
+    print("AT THE TIME YOU DIED, YOU HAD :")
+
+
+def print_victory_message():
+    print()
+    print("YOU LEFT THE CASTLE WITH", end='')
+    if of == 0:
+        print("OUT", end='')
+    print(" THE ORB OF ZOT.")
+    print()
+    if of == 1:
+        print()
+        print("AN INCREDIBLY GLORIOUS VICTORY!!")
+        print()
+        print("IN ADDITION, YOU GOT OUT WITH THE FOLLOWING :")
+    else:
+        print()
+        print("A LESS THAN AWE-INSPIRING DEFEAT.")
+    print()
+    print("WHEN YOU LEFT THE CASTLE, YOU HAD :")
+    if q3 == 0:
+        print("YOUR MISERABLE LIFE!")
+    for q in range(1, 9):
+        if t[q] == 1:
+            print(c$(q+25))
+    print(w$(wv+1), "AND", w$(av+5), end='')
+    if lf == 1:
+        print(" AND A LAMP")
+    print()
+    print("YOU ALSO HAD", fl, "FLARES AND", gp, "GOLD PIECES", end='')
+    if rf == 1:
+        print(" AND THE RUNESTAFF")
+    print()
+    print("AND IT TOOK YOU", t, "TURNS!")
+
