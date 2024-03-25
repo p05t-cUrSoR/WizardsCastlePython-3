@@ -176,8 +176,6 @@ def create_room():
     L[FND(X)] = 103
 
 
-# Start of the program
-choose_sex()
 def choose_sex():
     global SX
     print("OK, {}, YOU HAVE THE FOLLOWING ATTRIBUTES:".format(R[RC]))
@@ -221,6 +219,10 @@ def allocate_points(attribute):
             print("Invalid input! Please enter a valid number.")
             continue
     OT -= Q
+
+# Start of the program
+choose_sex()
+
 
 
 def choose_armor(z):
