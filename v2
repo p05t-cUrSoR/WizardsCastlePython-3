@@ -1121,7 +1121,7 @@ def escape_scenario():
         return 3900
     else:
         print()
-        print("** DON'T PRESS YOUR LUCK, ", r$(rc), "!")
+        print("** DON'T PRESS YOUR LUCK, ", r[rc], "!")
         print()
         return 8670
 
@@ -1144,7 +1144,7 @@ def handle_armor_destruction():
 
 def print_death_message():
     print(chr(7))
-    print("A NOBLE EFFORT, OH FORMERLY LIVING ", r$(rc), "!")
+    print("A NOBLE EFFORT, OH FORMERLY LIVING ", r[rc], "!")
     print()
     print("YOU DIED DUE TO LACK OF ", end='')
     if st < 1:
