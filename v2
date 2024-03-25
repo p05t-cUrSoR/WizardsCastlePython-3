@@ -2,8 +2,8 @@
 
 
 #This Python code corresponds to the initialization and introductory parts of the provided BASIC code snippet.
-
 import random
+import sys
 
 def get_input(prompt):
     try:
@@ -162,19 +162,6 @@ def setup_castle():
         setup_castle()
 
     OT += 4 * (RC == 1)
-    if RC > 0:
-        R_ = "HUMAN"
-    else:
-        print("** CUTE ", R_, ", REAL CUTE. TRY M OR F.")
-        setup_castle()
-
-
-# Assuming RC is a predefined variable, define it before using it
-RC = 0
-
-# Assuming FND is a predefined function, import it before using it
-# Add the import statement for the FND function
-from your_module import FND
 
 # Define RC at the beginning of the script
 RC = 0
