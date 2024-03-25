@@ -21,7 +21,7 @@ def initialize_arrays():
     Q = random.random()
     C = [""] * 35
     I = [""] * 35
-    R = [""] * 5
+    R = [""] * 5s
     W = [""] * 9
     E = [""] * 9
     L = [101] * 513
@@ -66,7 +66,6 @@ print_intro()
 print_welcome()
 press_any_key()
 initialize_game()
-
 def setup_castle():
     global X, Y, L, C, R, O, RC, ST, DX, R_, O_, BF, OT, AV, HT, T, VF, LF, TC, GP, RF, OF, BL, IQ, SX
 
@@ -163,6 +162,9 @@ def setup_castle():
     if RC == 0:
         print("** THAT WAS INCORRECT. PLEASE TYPE E, D, M, OR H.")
         setup_castle()
+
+    OT += 4 * (RC == 1)
+
 
     OT += 4 * (RC == 1)
 
