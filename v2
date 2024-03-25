@@ -845,45 +845,9 @@ def main_processing_loop():
     if GP < 0:
         GP = 0
     if C[2][3] <= T[4]:
-        return
-###
-    A = X
-    B = Y
-    C = Z
-    X = FNA(8)
-    Y = FNA(8)
-    Z = FNA(8)
+        return  # This line may need to be replaced with the proper code
 
-    L[FND(Z)] = FNE(L[FND(Z)]) + 100
-
-    X = A
-    Y = B
-    Z = C
-
-    if L[FND(Z)] != 1:
-        for Q in range(3):
-            C[Q][3] = -(C[Q][0] == X) * (C[Q][1] == Y) * (C[Q][2] == Z)
-
-    if FNA(5) > 1:
-        return
-
-    print()
-    print("YOU ", end="")
-    Q = FNA(7) + BL
-    if Q > 7:
-        Q = 4
-    options = {
-        1: see_bat_fly_by,
-        2: hear,
-        3: smell,
-        4: feel_like_being_watched
-    }
-    options[Q]()
-
-    return
-
-#might have fed up here
-      def display_map():
+def display_map():
     print()
     a = x
     b = y
@@ -898,6 +862,7 @@ def main_processing_loop():
                 print(f" {i[q]}   ", end="")
         print()
         print()
+
 
 
 def adjacent_room_contents_with_flare():
