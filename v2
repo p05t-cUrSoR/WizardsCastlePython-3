@@ -1158,7 +1158,7 @@ def print_death_message():
     print("AT THE TIME YOU DIED, YOU HAD :")
     return None
 
-def print_victory_message():
+ddef print_victory_message():
     print()
     print("YOU LEFT THE CASTLE WITH", end='')
     if of == 0:
@@ -1179,8 +1179,8 @@ def print_victory_message():
         print("YOUR MISERABLE LIFE!")
     for q in range(1, 9):
         if t[q] == 1:
-            print(c$(q + 25))
-    print(w$(wv + 1), "AND", w$(av + 5), end='')
+            print(c[q + 25])
+    print(w[wv + 1], "AND", w[av + 5], end='')
     if lf == 1:
         print(" AND A LAMP")
     print()
@@ -1192,7 +1192,6 @@ def print_victory_message():
 
     print()
     print("I WANT", c[q + 25], ". WILL YOU GIVE IT TO ME", end='')
-    gosub_9850()
     if o != "Y":
         return 8420
     else:
@@ -1202,6 +1201,7 @@ def print_victory_message():
         print("OK, JUST DON'T TELL ANYONE ELSE.")
         vf += (l[fnd(z)] == 25)
         return 2920
+
 
 def handle_web_attack():
     global wc, z
