@@ -1,0 +1,48 @@
+# WOW once more beacuse TWICE IS NICE! GTFBTW!
+
+# initializes the game, allows the player to select their race, and then starts the game accordingly (START FKR)---CHECK
+# Define dungeon layout (rooms, corridors, etc.)
+# Initialize player attributes (health, strength, etc.)
+# Implement functions for player movement (move forward, turn left/right, etc.)
+# Implement functions to handle encounters with monsters
+# Implement combat mechanics (attack, defend, flee, etc.)
+# Implement functions for picking up items and interacting with objects
+# Implement functions for displaying game status and updating player information
+# Implement functions to handle winning and losing conditions
+
+
+# This code initializes the game, allows the player to select their race, and then starts the game accordingly. It maintains the essence of the Wizard's Castle game while being written in Python. Let me know if you need further modifications or assistance!
+import random
+
+# Function to initialize the game
+def initialize_game():
+    print("Many cycles ago, in the kingdom of N'Dic, the gnomic wizard Zot forged his great Orb of Power.")
+    print("He soon vanished, leaving behind his vast subterranean castle filled with esurient monsters, fabulous treasures, and the incredible Orb of Zot.")
+    print("From that time hence, many a bold youth has ventured into the Wizard's Castle. As of now, none has ever emerged victoriously! Beware!!")
+
+# Function to select the player's race
+def select_race():
+    print("Choose your wizardly avatar like you're pickin' your trusty steed – gotta have the right spellcaster for the quest.")
+    print("1. Elf")
+    print("2. Dwarf")
+    print("3. Man")
+    print("4. Hobbit")
+    choice = input("Enter the number corresponding to your choice: ")
+    while choice not in ['1', '2', '3', '4']:
+        choice = input("Invalid choice! Please enter a number between 1 and 4: ")
+    races = { '1': 'Elf', '2': 'Dwarf', '3': 'Man', '4': 'Hobbit' }
+    return races[choice]
+
+# Function to start the game
+def start_game():
+    race = select_race()
+    print("You've chosen to play as a", race)
+
+# Main function
+def main():
+    initialize_game()
+    start_game()
+
+if __name__ == "__main__":
+    main()
+
