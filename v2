@@ -169,15 +169,21 @@ def setup_castle():
         setup_castle()
 
 
+# Assuming RC is a predefined variable, define it before using it
+RC = 0
+
+# Assuming FND is a predefined function, import it before using it
+# Add the import statement for the FND function
+from your_module import FND
+
 def create_room():
     global X, Y, L
-    X = FNA(8)
-    Y = FNA(8)
+    X = FND(8)
+    Y = FND(8)
     L[FND(X)] = 103
 
-
 def choose_sex():
-    global SX
+    global SX, RC  # Define RC as a global variable
     print("OK, {}, YOU HAVE THE FOLLOWING ATTRIBUTES:".format(R[RC]))
     print("STRENGTH = {}, INTELLIGENCE = {}, DEXTERITY = {}".format(ST, IQ, DX))
     print("AND {} OTHER POINTS TO ALLOCATE AS YOU WISH.".format(OT))
@@ -204,7 +210,6 @@ def choose_sex():
     z = "ARMOR"
     choose_armor(z)
 
-
 def allocate_points(attribute):
     global Q, OT
     print("\nChoose points to allocate for", attribute)
@@ -222,8 +227,6 @@ def allocate_points(attribute):
 
 # Start of the program
 choose_sex()
-
-
 
 def choose_armor(z):
     global AV, GP
@@ -257,7 +260,6 @@ def choose_armor(z):
     z = "WEAPONS"
     choose_weapon(z)
 
-
 def choose_weapon(z):
     global WV, GP
     print("SWORD<30> MACE<20> DAGGER<10> NOTHING<0>")
@@ -277,6 +279,7 @@ def choose_weapon(z):
         else:
             print("Invalid choice! Please choose from the options provided.")
             continue
+
 
     if GP < 20:
         return
