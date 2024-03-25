@@ -176,6 +176,9 @@ RC = 0
 # Add the import statement for the FND function
 from your_module import FND
 
+# Define RC at the beginning of the script
+RC = 0
+
 def create_room():
     global X, Y, L
     X = FND(8)
@@ -183,7 +186,7 @@ def create_room():
     L[FND(X)] = 103
 
 def choose_sex():
-    global SX, RC  # Define RC as a global variable
+    global SX, RC, ST, DX, IQ, OT  # Define variables as global
     print("OK, {}, YOU HAVE THE FOLLOWING ATTRIBUTES:".format(R[RC]))
     print("STRENGTH = {}, INTELLIGENCE = {}, DEXTERITY = {}".format(ST, IQ, DX))
     print("AND {} OTHER POINTS TO ALLOCATE AS YOU WISH.".format(OT))
@@ -209,7 +212,6 @@ def choose_sex():
     print("OK, {}, YOU HAVE 60 GOLD PIECES (GP'S).".format(R[RC]))
     z = "ARMOR"
     choose_armor(z)
-
 def allocate_points(attribute):
     global Q, OT
     print("\nChoose points to allocate for", attribute)
