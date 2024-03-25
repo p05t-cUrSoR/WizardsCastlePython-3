@@ -39,7 +39,7 @@ Expanded Community Support:
     
 Controls
 
-Use arrow keys or WASD to navigate.
+Use N S W E keys to navigate
     Type commands to interact with objects and NPCs.
     Press Enter to confirm actions.
     Use shortcuts like 'N' for North, 'S' for South, etc.
@@ -49,6 +49,7 @@ Encounters
     Kill Vendors and take their gold!
     Kidnap your nehibors dog and teach it to play YAHATZEE!
     TAKE OVER THE WORLD!
+    
 Tutorial
 
   Character Selection: Choose your race wisely; each offers unique strengths, well except the hobbit 🤷️.
