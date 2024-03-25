@@ -64,8 +64,6 @@ print_welcome()
 press_any_key()
 initialize_game()
 
-#This Python code translates the BASIC setup of the wizard's castle and character selection part. It handles creating rooms in the castle and setting up the player's character based on their choice of race and sex.
-
 def setup_castle():
     global X, Y, L, C, R, O, RC, ST, DX, R_, O_, BF, OT, AV, HT, T, VF, LF, TC, GP, RF, OF, BL, IQ, SX
 
@@ -114,7 +112,7 @@ def setup_castle():
     RC = 0
     ST = 2
     DX = 14
-    R$ = "MAN"
+    R_ = "MAN"
     Q = 112 + FNA(12)
     Z = FNA(8)
     create_room()
@@ -153,7 +151,7 @@ def setup_castle():
     sex_choice = input("Enter 'E' for Elf, 'D' for Dwarf, 'M' for Man, or 'H' for Hobbit: ").upper()
 
     for Q in range(1, 5):
-        if R$[Q - 1][0] == sex_choice:
+        if R_[Q - 1][0] == sex_choice:
             RC = Q
             ST += 2 * Q
             DX -= 2 * Q
@@ -165,9 +163,9 @@ def setup_castle():
 
     OT += 4 * (RC == 1)
     if RC > 0:
-        R$ = "HUMAN"
+        R_ = "HUMAN"
     else:
-        print("** CUTE ", R$, ", REAL CUTE. TRY M OR F.")
+        print("** CUTE ", R_, ", REAL CUTE. TRY M OR F.")
         setup_castle()
 
 
@@ -176,150 +174,6 @@ def create_room():
     X = FNA(8)
     Y = FNA(8)
     L[FND(X)] = 103
-
-
-
-
-
-
-      def choose_sex():
-    global SX
-    print("OK, {}, YOU HAVE THE FOLLOWING ATTRIBUTES:".format(R[RC]))
-    print("STRENGTH = {}, INTELLIGENCE = {}, DEXTERITY = {}".format(ST, IQ, DX))
-    print("AND {} OTHER POINTS TO ALLOCATE AS YOU WISH.".format(OT))
-
-    z = "STRENGTH"
-    allocate_points(z)
-    ST += Q
-
-    if OT == 0:
-        return
-
-    z = "INTELLIGENCE"
-    allocate_points(z)
-    IQ += Q
-
-    if OT == 0:
-        return
-
-    z = "DEXTERITY"
-    allocate_points(z)
-    DX += Q
-
-    print("OK, {}, YOU HAVE 60 GOLD PIECES (GP'S).".format(R[RC]))
-    z = "ARMOR"
-    choose_armor(z)
-
-
-def allocate_points(attribute):
-    global Q, OT
-    print("\nChoose points to allocate for", attribute)
-    while True:
-        try:
-            Q = int(input("Enter points ({} left): ".format(OT)))
-            if Q < 0 or Q > OT:
-                print("Invalid input! Please enter a valid number between 0 and {}.".format(OT))
-                continue
-            break
-        except ValueError:
-            print("Invalid input! Please enter a valid number.")
-            continue
-    OT -= Q
-
-
-def choose_armor(z):
-    global AV, GP
-    AV = 0
-    WV = 0
-    FL = 0
-    WC = 0
-
-    print("PLATE<30> CHAINMAIL<20> LEATHER<10> NOTHING<0>")
-    while True:
-        armor_choice = input("Choose armor: ")
-        if armor_choice.upper() == "NOTHING":
-            break
-        elif armor_choice.upper() in ["PLATE", "CHAINMAIL", "LEATHER"]:
-            if armor_choice.upper() == "PLATE":
-                AV = -3
-            elif armor_choice.upper() == "CHAINMAIL":
-                AV = -2
-            elif armor_choice.upper() == "LEATHER":
-                AV = -1
-            GP -= AV * 10
-            break
-        else:
-            print("Invalid choice! Please choose from the options provided.")
-            continue
-
-    if GP < 20:
-        return
-
-    print("OK, BOLD {}, YOU HAVE {} GP'S LEFT.".format(R[RC], GP))
-    z = "WEAPONS"
-    choose_weapon(z)
-
-
-def choose_weapon(z):
-    global WV, GP
-    print("SWORD<30> MACE<20> DAGGER<10> NOTHING<0>")
-    while True:
-        weapon_choice = input("Choose weapon: ")
-        if weapon_choice.upper() == "NOTHING":
-            break
-        elif weapon_choice.upper() in ["SWORD", "MACE", "DAGGER"]:
-            if weapon_choice.upper() == "SWORD":
-                WV = -3
-            elif weapon_choice.upper() == "MACE":
-                WV = -2
-            elif weapon_choice.upper() == "DAGGER":
-                WV = -1
-            GP -= WV * 10
-            break
-        else:
-            print("Invalid choice! Please choose from the options provided.")
-            continue
-
-    if GP < 20:
-        return
-
-    print("\nDo you want to buy a lamp for 20 GP'S?")
-    while True:
-        lamp_choice = input("(Y/N): ").upper()
-        if lamp_choice == "Y":
-            GP -= 20
-            LF = 1
-            print("Lamp purchased!")
-            break
-        elif lamp_choice == "N":
-            print("No lamp purchased.")
-            break
-        else:
-            print("Invalid choice! Please enter Y or N.")
-            continue
-
-    if GP < 1:
-        Q = 0
-        return
-
-    print("OK, {}, YOU HAVE {} GOLD PIECES LEFT.".format(R[RC], GP))
-    print("\nFlares cost 1 GP each.")
-    while True:
-        try:
-            flares = int(input("How many do you want? "))
-            if flares < 0:
-                print("Invalid input! Please enter a non-negative number.")
-                continue
-            break
-        except ValueError:
-            print("Invalid input! Please enter a valid number.")
-            continue
-
-    FL += flares
-    GP -= flares
-
-    print("OK, {}, YOU ARE NOW ENTERING THE CASTLE!".format(R[RC]))
-    # Continue to the next block of code
 
 
 # Start of the program
