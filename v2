@@ -1034,7 +1034,6 @@ def gaze_with_orb():
         print("{} GAZING BACK AT YOU!".format(c[random.randint(13, 16)]))  # Corrected the incomplete line
     # Add the rest of the function code here...
 
-
 if rf != 0:  # Corrected indentation for this if statement
     print()
     print("** YOU CAN'T TELEPORT WITHOUT THE RUNESTAFF!")
@@ -1051,7 +1050,6 @@ z = q
 o = "T"
 goto_5920()
 
-
 def quit_game():
     print()
     print("DO YOU REALLY WANT TO QUIT NOW", end='')
@@ -1064,7 +1062,6 @@ def quit_game():
 
 
 def display_status_information():
-
     print()
     if bl == 0:
         display_coordinates()
