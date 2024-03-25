@@ -1031,26 +1031,25 @@ def gaze_with_orb():
         global bl
         bl = 1
     elif q == 3:
-        print("{} GAZING BACK AT YOU!".format(c[random.randint(13,
+        print("{} GAZING BACK AT YOU!".format(c[random.randint(13, 16)]))  # Corrected the incomplete line
+    # Add the rest of the function code here...
 
-#
 
-
-                                                                   if rf != 0:
-        print()
-        print("** YOU CAN'T TELEPORT WITHOUT THE RUNESTAFF!")
-        goto_2920()
-    z = "X-COORDINATE"
-    q = get_coordinate(z)
-    x = q
-    z = "Y-COORDINATE"
-    q = get_coordinate(z)
-    y = q
-    z = "Z-COORDINATE"
-    q = get_coordinate(z)
-    z = q
-    o = "T"
-    goto_5920()
+if rf != 0:  # Corrected indentation for this if statement
+    print()
+    print("** YOU CAN'T TELEPORT WITHOUT THE RUNESTAFF!")
+    goto_2920()
+z = "X-COORDINATE"
+q = get_coordinate(z)
+x = q
+z = "Y-COORDINATE"
+q = get_coordinate(z)
+y = q
+z = "Z-COORDINATE"
+q = get_coordinate(z)
+z = q
+o = "T"
+goto_5920()
 
 
 def quit_game():
@@ -1065,6 +1064,7 @@ def quit_game():
 
 
 def display_status_information():
+
     print()
     if bl == 0:
         display_coordinates()
