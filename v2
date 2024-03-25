@@ -1079,7 +1079,7 @@ def quit_game():
 def handle_web_attack():
     global wc, z
     if wc <= 0:
-        goto_8520()
+        return 8520
     wc -= 1
     if wc == 0:
         print()
@@ -1088,31 +1088,28 @@ def handle_web_attack():
     if z[0] == " ":
         z = z[1:]
     if wc <= 0:
-        goto_8520()
+        return 8520
     print()
     print("THE", z, "IS STUCK AND CAN'T ATTACK NOW!")
-    goto_8630()
-
-
+    return 8630
 
 def handle_enemy_attack():
     global wc, q1, q2
-    if o$ != "R":
-        goto_7410()
+    if o != "R":
+        return 7410
     print()
-    print("THE", z$, "ATTACKS!")
+    print("THE", z, "ATTACKS!")
     if dx < random.randint(1, 7) + random.randint(1, 7) + random.randint(1, 7) + 3 * bl:
         print()
         print("WHAT LUCK, HE MISSED YOU!")
-        goto_8630()
+        return 8630
     print()
     print("OUCH! HE HIT YOU!")
     q = q1
     gosub_8740()
     if st < 1:
-        goto_8840()
-    goto_8630()
-
+        return 8840
+    return 8630
 
 def escape_scenario():
     print()
@@ -1120,31 +1117,30 @@ def escape_scenario():
     print()
     print("DO YOU WANT TO GO NORTH, SOUTH, EAST, OR WEST", end='')
     o = input().upper()
-    if o == "N" or o == "S" or o == "E" or o == "W":
-        goto_3900()
+    if o in ["N", "S", "E", "W"]:
+        return 3900
     else:
         print()
         print("** DON'T PRESS YOUR LUCK, ", r$(rc), "!")
         print()
-        goto_8670()
-
+        return 8670
 
 def handle_armor_destruction():
     global av, ah
     if av != 0:
-        goto_8820()
+        return 8820
     q = q - av
     ah = ah - av
     if q < 0:
         ah = ah - q
         q = 0
     if ah >= 0:
-        goto_8820()
+        return 8820
     ah = 0
     av = 0
     print()
     print("YOUR ARMOR HAS BEEN DESTROYED . . . GOOD LUCK!")
-
+    return None
 
 def print_death_message():
     print(chr(7))
@@ -1160,7 +1156,7 @@ def print_death_message():
     print()
     q3 = 1
     print("AT THE TIME YOU DIED, YOU HAD :")
-
+    return None
 
 def print_victory_message():
     print()
@@ -1195,54 +1191,53 @@ def print_victory_message():
     print("AND IT TOOK YOU", t, "TURNS!")
 
     print()
-    print("I WANT", c[q+25], ". WILL YOU GIVE IT TO ME", end='')
+    print("I WANT", c[q + 25], ". WILL YOU GIVE IT TO ME", end='')
     gosub_9850()
-    if o$ == "N":
-        goto_8420()
-    elif o$ == "Y":
+    if o != "Y":
+        return 8420
+    else:
         t[q] = 0
         tc -= 1
         print()
         print("OK, JUST DON'T TELL ANYONE ELSE.")
         vf += (l[fnd(z)] == 25)
-    goto_2920()
-
+        return 2920
 
 def handle_web_attack():
-    global wc, z$
+    global wc, z
     if wc <= 0:
-        goto_8520()
+        return 8520
     wc -= 1
     if wc == 0:
         print()
         print("THE WEB JUST BROKE!")
-    z$ = c$(a+12)[2:]
-    if z$[0] == " ":
-        z$ = z$[1:]
+    z = c[a + 12][2:]
+    if z[0] == " ":
+        z = z[1:]
     if wc <= 0:
-        goto_8520()
+        return 8520
     print()
-    print("THE", z$, "IS STUCK AND CAN'T ATTACK NOW!")
-    goto_8630()
-
+    print("THE", z, "IS STUCK AND CAN'T ATTACK NOW!")
+    return 8630
 
 def handle_enemy_attack():
     global wc, q1, q2
-    if o$ != "R":
-        goto_7410()
+    if o != "R":
+        return 7410
     print()
-    print("THE", z$, "ATTACKS!")
-    if dx < random.randint(1, 7) + random.randint(1, 7) + random.randint(1, 7) + 3*bl:
+    print("THE", z, "ATTACKS!")
+    if dx < random.randint(1, 7) + random.randint(1, 7) + random.randint(1, 7) + 3 * bl:
         print()
         print("WHAT LUCK, HE MISSED YOU!")
-        goto_8630()
+        return 8630
     print()
     print("OUCH! HE HIT YOU!")
     q = q1
     gosub_8740()
     if st < 1:
-        goto_8840()
-    goto_8630()
+        return 8840
+    return 8630
+
 
 
 def escape_scenario():
@@ -1250,36 +1245,35 @@ def escape_scenario():
     print("YOU HAVE ESCAPED!")
     print()
     print("DO YOU WANT TO GO NORTH, SOUTH, EAST, OR WEST", end='')
-    gosub_9850()
-    if o$ == "N" or o$ == "S" or o$ == "E" or o$ == "W":
-        goto_3900()
-    print()
-    print("** DON'T PRESS YOUR LUCK, ", r$(rc), "!")
-    print()
-    goto_8670()
-
+    direction = input().upper()
+    if direction in ["N", "S", "E", "W"]:
+        return 3900
+    else:
+        print()
+        print("** DON'T PRESS YOUR LUCK, ", r[rc], "!")
+        print()
+        return 8670
 
 def handle_armor_destruction():
     global av, ah
     if av != 0:
-        goto_8820()
+        return 8820
     q = q - av
     ah = ah - av
     if q < 0:
         ah = ah - q
         q = 0
     if ah >= 0:
-        goto_8820()
+        return 8820
     ah = 0
     av = 0
     print()
     print("YOUR ARMOR HAS BEEN DESTROYED . . . GOOD LUCK!")
 
-
 def print_death_message():
     print(chr(7))
-    gosub_9770()
-    print("A NOBLE EFFORT, OH FORMERLY LIVING ", r$(rc), "!")
+    gosub_9770()  # Assuming this is a subroutine call to print a message
+    print("A NOBLE EFFORT, OH FORMERLY LIVING ", r[rc], "!")
     print()
     print("YOU DIED DUE TO LACK OF ", end='')
     if st < 1:
@@ -1291,7 +1285,6 @@ def print_death_message():
     print()
     q3 = 1
     print("AT THE TIME YOU DIED, YOU HAD :")
-
 
 def print_victory_message():
     print()
@@ -1312,10 +1305,11 @@ def print_victory_message():
     print("WHEN YOU LEFT THE CASTLE, YOU HAD :")
     if q3 == 0:
         print("YOUR MISERABLE LIFE!")
+    
     for q in range(1, 9):
         if t[q] == 1:
-            print(c$(q+25))
-    print(w$(wv+1), "AND", w$(av+5), end='')
+            print(c[q + 25])
+    print(w[wv + 1], "AND", w[av + 5], end='')
     if lf == 1:
         print(" AND A LAMP")
     print()
@@ -1324,4 +1318,5 @@ def print_victory_message():
         print(" AND THE RUNESTAFF")
     print()
     print("AND IT TOOK YOU", t, "TURNS!")
+
 
