@@ -1158,7 +1158,7 @@ def print_death_message():
     print("AT THE TIME YOU DIED, YOU HAD :")
     return None
 
-ddef print_victory_message():
+def print_victory_message():
     print()
     print("YOU LEFT THE CASTLE WITH", end='')
     if of == 0:
