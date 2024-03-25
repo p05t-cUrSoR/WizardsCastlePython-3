@@ -78,6 +78,8 @@ def choose_sex():
 print_intro()
 print_welcome()
 initialize_arrays()
+R = {"H": "Hobbit", "E": "Elf", "D": "Dwarf", "M": "Man"}
+
 choose_sex()
 
     global SX, RC, ST, DX, IQ, OT  # Define variables as global
