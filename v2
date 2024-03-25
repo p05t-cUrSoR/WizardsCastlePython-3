@@ -177,6 +177,11 @@ def create_room():
     Y = FND(8)
     L[FND(X)] = 103
 
+# Define these variables globally with initial values
+ST = 0
+IQ = 0
+DX = 0
+
 def choose_sex():
     global SX, RC, ST, DX, IQ, OT  # Define variables as global
     print("OK, {}, YOU HAVE THE FOLLOWING ATTRIBUTES:".format(R[RC]))
