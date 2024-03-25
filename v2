@@ -863,7 +863,7 @@ def display_map():
         print()
         print()
 
-
+#
 
 def adjacent_room_contents_with_flare():
     print()
@@ -882,7 +882,6 @@ def adjacent_room_contents_with_flare():
     x = a
     y = b
     update_display()
-
 
 def display_contents_of_adjacent_room_with_lamp():
     if lf == 0:
