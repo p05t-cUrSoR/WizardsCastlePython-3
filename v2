@@ -813,7 +813,7 @@ def gaze_at_orb():
     elif option == 4:
         A, B, C = X, Y, Z
         X, Y, Z = FNA(8), FNA(8), FNA(8)
-                Q = FNE(L[FND(Z)])
+        Q = FNE(L[FND(Z)])
         L[FND(Z)] = Q
         print("{} AT ({},{}) LEVEL{}.".format(C[Q], X, Y, Z))
         X, Y, Z = A, B, C
