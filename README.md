@@ -1,13 +1,13 @@
 # WizardsCastlePython-3
 Wizard's Castle Python 3 Conversion
 
-Game History:
+Game History
 
 In the mystical realm of N'Dic, the renowned gnome wizard Zot crafted the legendary Orb of Power within the depths of his vast subterranean fortress.
 However, Zot vanished, leaving behind his castle filled with ravenous monsters, untold treasures, and the coveted Orb. 
 Many valiant souls ventured forth into the Wizard's Castle, but none emerged victorious. Will you be the first to conquer its depths?
 
-Game Overview:
+Game Overview
 
 Wizard's Castle is a text-based adventure where you choose from four races: Elf, Dwarf, Man, or Hobbit, each with unique abilities.
 Explore procedurally generated dungeons filled with perilous encounters, traps, and treasures. Your goal: locate the Orb of Zot and escape alive.
@@ -18,37 +18,40 @@ This Python 3 conversion aims to faithfully replicate all features and mechanics
 Every aspect, from character selection to dungeon exploration and combat encounters, will remain true to the classic gameplay experience.
 The focus is on maintaining the same gameplay flow, challenge level, and excitement that players of the original Wizard's Castle enjoyed.
 
-Python Enhancement:
+Python Enhancement
 
-While staying true to the original functionality, Python's flexibility and robustness offer several advantages:
+While staying true to the original functionality, Python's flexibility and robustness offer several advantages
 
-    Improved Readability: 
+
+
+Improved Readability 
     Python's clear syntax enhances the readability of the codebase, making it easier to understand and maintain.
-    Modularity: 
+    
+Modularity: 
     Python's support for modular programming allows for better organization of code, facilitating future updates and additions.
-    Cross-Platform Compatibility: 
+    
+Cross-Platform Compatibility: 
     Python's platform-independent nature ensures that the game can run smoothly on various operating systems without modification.
-    Expanded Community Support: 
+    
+Expanded Community Support: 
     Python's large community of developers provides access to a wealth of resources, libraries,
     and tools that can further enhance the game's functionality and performance.
+    
+Controls
 
-Controls:
-
-    Use arrow keys or WASD to navigate.
+Use arrow keys or WASD to navigate.
     Type commands to interact with objects and NPCs.
     Press Enter to confirm actions.
     Use shortcuts like 'N' for North, 'S' for South, etc.
 
-Encounters:
-
+Encounters
     Battle fierce monsters like Goblins, Trolls, and Dragons.
     Kill Vendors and take their gold!
     Kidnap your nehibors dog and teach it to play YAHATZEE!
     TAKE OVER THE WORLD!
+Tutorial
 
-Tutorial:
-
-    Character Selection: Choose your race wisely; each offers unique strengths, well except the hobbit 🤷️.
+  Character Selection: Choose your race wisely; each offers unique strengths, well except the hobbit 🤷️.
     Exploration: Navigate through the castle using directional keys.
     Combat: Engage enemies in turn-based battles using your character's abilities.
     Treasure: Collect gold, artifacts, and magical items to aid your quest.
