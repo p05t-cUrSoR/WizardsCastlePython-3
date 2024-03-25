@@ -65,25 +65,27 @@ OT = 0
 # Define the choose_sex() function
 def choose_sex():
     global SX, RC, ST, DX, IQ, OT  # Define variables as global
-    
     while True:
         print("ALL RIGHT, BOLD ONE.")
         print("YOU MAY BE AN ELF, DWARF, MAN, OR HOBBIT.")
         sex_choice = input("Enter 'E' for Elf, 'D' for Dwarf, 'M' for Man, or 'H' for Hobbit: ").upper()
+
         if sex_choice in ['E', 'D', 'M', 'H']:
-            for Q in range(1, 5):
-                if R_[Q - 1][0] == sex_choice:
-                    RC = Q
-                    ST += 2 * Q
-                    DX -= 2 * Q
-                    break  # Break out of the loop once race choice is made
-            break  # Break out of the outer loop as well
-        else:
-            print("** INVALID CHOICE. PLEASE ENTER E, D, M, OR H.")
-    
-    print("OK, {}, YOU HAVE THE FOLLOWING ATTRIBUTES:".format(R[RC]))
+            break  # Break out of the loop if a valid choice is made
+
+        print("** THAT WAS INCORRECT. PLEASE TYPE E, D, M, OR H.")
+
+    # Logic to assign attributes based on the chosen race goes here
+    # For now, let's set some default attribute values
+    ST = 6
+    IQ = 12
+    DX = 10
+    OT = 12
+
+    print("\nOK, {}, YOU HAVE THE FOLLOWING ATTRIBUTES:".format(R[RC]))
     print("STRENGTH = {}, INTELLIGENCE = {}, DEXTERITY = {}".format(ST, IQ, DX))
     print("AND {} OTHER POINTS TO ALLOCATE AS YOU WISH.".format(OT))
+
 
     z = "STRENGTH"
     allocate_points(z)
