@@ -32,12 +32,13 @@ Controls:
 Encounters:
 
     Battle fierce monsters like Goblins, Trolls, and Dragons.
-    Solve puzzles and decipher riddles.
-    Discover secret chambers and hidden passages.
+    Kill Vendors and take their gold!
+    Kidnap your nehibors dog and teach it to play YAHATZEE!
+    TAKE OVER THE WORLD!
 
 Tutorial:
 
-    Character Selection: Choose your race wisely; each offers unique strengths.
+    Character Selection: Choose your race wisely; each offers unique strengths, well except the hobbit 🤷️.
     Exploration: Navigate through the castle using directional keys.
     Combat: Engage enemies in turn-based battles using your character's abilities.
     Treasure: Collect gold, artifacts, and magical items to aid your quest.
