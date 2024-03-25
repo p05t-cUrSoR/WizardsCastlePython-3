@@ -1077,21 +1077,22 @@ def quit_game():
 
 
 def handle_web_attack():
-    global wc, z$
+    global wc, z
     if wc <= 0:
         goto_8520()
     wc -= 1
     if wc == 0:
         print()
         print("THE WEB JUST BROKE!")
-    z$ = c$(a + 12)[2:]
-    if z$[0] == " ":
-        z$ = z$[1:]
+    z = c[a + 12][2:]
+    if z[0] == " ":
+        z = z[1:]
     if wc <= 0:
         goto_8520()
     print()
-    print("THE", z$, "IS STUCK AND CAN'T ATTACK NOW!")
+    print("THE", z, "IS STUCK AND CAN'T ATTACK NOW!")
     goto_8630()
+
 
 
 def handle_enemy_attack():
