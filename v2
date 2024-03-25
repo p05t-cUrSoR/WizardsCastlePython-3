@@ -21,7 +21,7 @@ def initialize_arrays():
     Q = random.random()
     C = [""] * 35
     I = [""] * 35
-    R = [""] * 5s
+    R = [""] * 5
     W = [""] * 9
     E = [""] * 9
     L = [101] * 513
