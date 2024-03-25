@@ -1061,185 +1061,138 @@ def quit_game():
     goto_9080()
 
 
-def display_status_information():
     print()
-    if bl == 0:
-        display_coordinates()
-    else:
-        display_map()
-    print("STRENGTH =", st, "INTELLIGENCE =", iq, "DEXTERITY =", dx)
-    print("TREASURES =", tc, "FLARES =", fl, "GOLD PIECES =", gp)
-    print("WEAPON =", w[wv + 1], "  ARMOR =", w[av + 5], end='')
-    if lf == 1:
-        print("  AND A LAMP")
-    print()
-    wc = 0
-    q = find_next_empty(l[find_index(z)])
-    l[find_index(z)] = q
-    print()
-    print("HERE YOU FIND", c[q], ".")
-    if (q < 7) or (q == 11) or (q == 12):
-        goto_2920()
-    elif q == 7:
-        global gp
-        gp += random.randint(1, 10)
-        print("YOU NOW HAVE", gp, ".")
-        goto_5230()
-    elif q == 8:
-        global fl
-        fl += random.randint(1, 5)
-        print("YOU NOW HAVE", fl, ".")
-        goto_5230()
-    elif q > 9:
-        if (o[1] == x) and (o[2] == y) and (o[3] == z):
-            if o != 'T':
-                execute_command('N')
-            else:
-                execute_command('R')
-
-
-def process_trade():
-    global av, ah, wv, mc
-    if wv == 0:
-        print()
-        print("** YOU CAN'T TRADE WITHOUT A WEAPON,", r[rc])
-        return
-    if mc == 0:
-        print()
-        print("** YOU CAN'T TRADE WITHOUT A MONSTER,", r[rc])
-        return
-    a = (c[1][3] > t[1]) or (bl == 1) or (dx < random.randint(1, 18) + random.randint(1, 18))
-    if a:
-        print()
-        print("YOU'RE FACING", c[ah + 12], "!")
-        print()
-        print("YOU MAY ATTACK OR RETREAT.")
-        print("YOU CAN ALSO ATTEMPT A BRIBE.")
-        if iq > 14:
-            print("YOU CAN ALSO CAST A SPELL.")
-        print("YOUR STRENGTH IS", st, "AND YOUR DEXTERITY IS", dx, ".")
-        o = input().upper()
-        if o != "A":
-            print("NICE SHOT,", r[rc])
-            return
-        if wv == 0:
-            print()
-            print("** POUNDING ON", c[ah + 12], "WON'T HURT IT!")
-            return
-        if bf == 1:
-            print()
-            print("** YOU CAN'T BEAT IT TO DEATH WITH A BOOK!")
-            return
-        if dx < random.randint(1, 20) + 3 * bl:
-            print()
-            print("YOU MISSED, TOO BAD!")
-            return
-        print()
-        z = c[ah + 12]
-        if z[0] == " ":
-            z = z[1:]
-        print("YOU HIT THE EVIL", z, "!")
-        q = q - wv
-        if (ah != 9) and (ah != 12) and (q > 0):
-            if (ah != 9) and (ah != 12):
-                if q != 0:
-                    print()
-                    print("YOU SPEND AN HOUR EATING", z, ".")
-                    h = t
-            if (x != r[1]) or (y != r[2]) or (z != r[3]):
-                if ah != 13:
-                    execute_command('N')
-                else:
-                    execute_command('F')
-        else:
-            print()
-            print(z, "LIES DEAD AT YOUR FEET!")
-            if h < t - 60:
-                print()
-                print("YOU SPEND AN HOUR EATING", z, ".")
-                h = t
-            if (x != r[1]) or (y != r[2]) or (z != r[3]):
-                if ah != 13:
-                    execute_command('N')
-                else:
-                    execute_command('F')
-#
-
-                  print()
-print("GREAT ZOT! YOU'VE FOUND THE RUNESTAFF!", chr(7))
-r[1] = 0
-rf = 1
-q = random.randint(1, 1000)
-print()
-print("YOU NOW GET HIS HOARD OF", q, "GP'S")
-gp += q
-goto_5230()
-
-
-def cast_spell():
-    global st, iq, q2
-    if o$ == "R":
+    print("I WANT", c[q + 25], ". WILL YOU GIVE IT TO ME", end='')
+    o = input().upper()
+    if o != "Y":
+        print("NOPE")
         goto_8420()
-    if o$ != "C":
-        goto_8210()
-    if iq >= 15 or q3 <= 1:
-        goto_7970()
-    print()
-    print("** YOU CAN'T CAST A SPELL NOW!")
-    goto_7410()
-    print()
-    print("WHICH SPELL (WEB, FIREBALL, DEATHSPELL)")
-    gosub_9850()
-    print()
-    if o$ != "W" and o$ != "F" and o$ != "D":
-        goto_8050()
-    if o$ == "W":
-        st -= 1
-        wc = random.randint(1, 8) + 1
-        if st < 1:
-            goto_8420()
-        elif wc > 0:
-            goto_8840()
-    elif o$ == "F":
-        q = random.randint(1, 7) + random.randint(1, 7)
-        st -= 1
-        iq -= 1
-        if iq < 1 or st < 1:
-            goto_8840()
-        print("IT DOES", q, "POINTS WORTH OF DAMAGE.")
-        print()
-        q2 -= q
-        goto_7730()
-    elif o$ == "D":
-        goto_8180()
     else:
+        t[q] = 0
+        tc -= 1
         print()
-        print("** TRY ONE OF THE OPTIONS GIVEN.")
+        print("OK, JUST DON'T TELL ANYONE ELSE.")
+        vf += (l[fnd(z)] == 25)
+    goto_2920()
+
+
+def handle_web_attack():
+    global wc, z$
+    if wc <= 0:
+        goto_8520()
+    wc -= 1
+    if wc == 0:
+        print()
+        print("THE WEB JUST BROKE!")
+    z$ = c$(a + 12)[2:]
+    if z$[0] == " ":
+        z$ = z$[1:]
+    if wc <= 0:
+        goto_8520()
+    print()
+    print("THE", z$, "IS STUCK AND CAN'T ATTACK NOW!")
+    goto_8630()
+
+
+def handle_enemy_attack():
+    global wc, q1, q2
+    if o$ != "R":
         goto_7410()
-
-
-def death_scenario():
-    global q2
-    print("DEATH . . . ", end='')
-    if iq < random.randint(1, 4) + 15:
-        print("YOURS!")
-        iq = 0
+    print()
+    print("THE", z$, "ATTACKS!")
+    if dx < random.randint(1, 7) + random.randint(1, 7) + random.randint(1, 7) + 3 * bl:
+        print()
+        print("WHAT LUCK, HE MISSED YOU!")
+        goto_8630()
+    print()
+    print("OUCH! HE HIT YOU!")
+    q = q1
+    gosub_8740()
+    if st < 1:
         goto_8840()
+    goto_8630()
+
+
+def escape_scenario():
+    print()
+    print("YOU HAVE ESCAPED!")
+    print()
+    print("DO YOU WANT TO GO NORTH, SOUTH, EAST, OR WEST", end='')
+    o = input().upper()
+    if o == "N" or o == "S" or o == "E" or o == "W":
+        goto_3900()
     else:
-        print("HIS!")
-        q2 = 0
-        goto_7740()
+        print()
+        print("** DON'T PRESS YOUR LUCK, ", r$(rc), "!")
+        print()
+        goto_8670()
 
 
-def trade_request():
-    global tc, vf
-    if o$ == "B" and q3 <= 1:
-        goto_8250()
-    if tc != 0:
-        goto_8290()
-    q = random.randint(1, 8)
-    while t[q] == 0:
-        q = random.randint(1, 8)
+def handle_armor_destruction():
+    global av, ah
+    if av != 0:
+        goto_8820()
+    q = q - av
+    ah = ah - av
+    if q < 0:
+        ah = ah - q
+        q = 0
+    if ah >= 0:
+        goto_8820()
+    ah = 0
+    av = 0
+    print()
+    print("YOUR ARMOR HAS BEEN DESTROYED . . . GOOD LUCK!")
+
+
+def print_death_message():
+    print(chr(7))
+    print("A NOBLE EFFORT, OH FORMERLY LIVING ", r$(rc), "!")
+    print()
+    print("YOU DIED DUE TO LACK OF ", end='')
+    if st < 1:
+        print("STRENGTH.")
+    if iq < 1:
+        print("INTELLIGENCE.")
+    if dx < 1:
+        print("DEXTERITY.")
+    print()
+    q3 = 1
+    print("AT THE TIME YOU DIED, YOU HAD :")
+
+
+def print_victory_message():
+    print()
+    print("YOU LEFT THE CASTLE WITH", end='')
+    if of == 0:
+        print("OUT", end='')
+    print(" THE ORB OF ZOT.")
+    print()
+    if of == 1:
+        print()
+        print("AN INCREDIBLY GLORIOUS VICTORY!!")
+        print()
+        print("IN ADDITION, YOU GOT OUT WITH THE FOLLOWING :")
+    else:
+        print()
+        print("A LESS THAN AWE-INSPIRING DEFEAT.")
+    print()
+    print("WHEN YOU LEFT THE CASTLE, YOU HAD :")
+    if q3 == 0:
+        print("YOUR MISERABLE LIFE!")
+    for q in range(1, 9):
+        if t[q] == 1:
+            print(c$(q + 25))
+    print(w$(wv + 1), "AND", w$(av + 5), end='')
+    if lf == 1:
+        print(" AND A LAMP")
+    print()
+    print("YOU ALSO HAD", fl, "FLARES AND", gp, "GOLD PIECES", end='')
+    if rf == 1:
+        print(" AND THE RUNESTAFF")
+    print()
+    print("AND IT TOOK YOU", t, "TURNS!")
+
     print()
     print("I WANT", c[q+25], ". WILL YOU GIVE IT TO ME", end='')
     gosub_9850()
